@@ -15,11 +15,11 @@ Comment.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        body: {
+        comment_body: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        post_date: {
+        comment_date: {
             type: DataTypes.DATEONLY,
             allowNull: false,
         },
