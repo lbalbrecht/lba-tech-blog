@@ -7,6 +7,11 @@ router.get('/', async (req, res) => {
     res.render('index')
 })
 
+// loads the login page
+router.get('/login', async (req, res) => {
+    res.render('login')
+})
+
 // if user is logged in, displays user dashboard; otherwise, sends user to login page
 router.get('/dashboard', apiAuth, async (req, res) => {
     try {

@@ -1,0 +1,13 @@
+<div id="dashTrips">
+    <div id="page-title">
+        <h1>Your Posts</h1>
+    </div>
+    <main id="dashboardPage">
+        <div class="myPosts">
+            <h1>Welcome to your dashboard</h1>
+            {{#each userPost as |blogposts|}}
+            {{> post}}
+            {{/each}}
+        </div>
+    </main>
+</div>
