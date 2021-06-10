@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const { Comment, BlogPost, User } = require('../../models/');
+const apiAuth = require("../../middleware/apiAuth");
 
 // get all comments
 router.get('/', async (req, res) => {
@@ -32,7 +32,7 @@ router.get('/:id', async(req, res) => {
 });
 
 // create a new comment
-router.post('/', async (req, res) => {
+router.post('/', apiAuth, async (req, res) => {
     console.log('route reached!')
     try {
         const newComment = await Comment.create({
@@ -42,6 +42,10 @@ router.post('/', async (req, res) => {
             user_id: req.session.user.id,
             blogpost_id:req.body.blogpost.id
         });
+        if(!req.session.user) {
+            res.render('login')
+            return
+        }
         res.status(200).json(newComment)
     } catch (err) {
         res.status(500).json(err);
@@ -57,6 +61,10 @@ router.delete('./:id', async (req, res) => {
                 id: req.params.id
             }
         })
+        if (!req.session.user) {
+            res.render('login')
+            return
+        }
         res.status(200).json(removeComment)
 
         if (!removeComment) {
