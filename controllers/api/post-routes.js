@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Comment, BlogPost, User } = require('../../models');
+const apiAuth = require("../../middleware/apiAuth")
 
 // get all blog posts
 router.get('/', async (req, res) => {
@@ -32,7 +33,7 @@ router.get('/:id', async(req, res) => {
 });
 
 // create a new blog post
-router.post('/', async (req, res) => {
+router.post('/', apiAuth, async (req, res) => {
     console.log('route reached!')
     try {
         const newPost = await BlogPost.create({
@@ -41,6 +42,10 @@ router.post('/', async (req, res) => {
             post_date: req.body.post_date,
             user_id: req.session.user.id
         });
+        if(!req.session.user) {
+            res.render('login')
+            return
+        }
         res.status(200).json(newPost)
     } catch (err) {
         res.status(500).json(err);
@@ -48,14 +53,18 @@ router.post('/', async (req, res) => {
 });
 
 // delete a blog post
-router.delete('./:id', async (req, res) => {
+router.delete('./:id', apiAuth, async (req, res) => {
     console.log('route reached!')
     try {
         const removePost = await BlogPost.destroy({
             where: {
                 id: req.params.id
             }
-        })
+        });
+        if(!req.session.user) {
+            res.render('login')
+            return
+        }
         res.status(200).json(removePost)
 
         if (!removePost) {

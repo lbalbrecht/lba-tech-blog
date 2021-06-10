@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
+// create a new user
 router.get('/sessiondata', (req, res) => {
     console.log('route reached');
     User.create({
@@ -21,6 +22,7 @@ router.get('/sessiondata', (req, res) => {
     })
 });
 
+// login an existing user
 router.post('/login', async (req, res) => {
     console.log('route reached!')
     try {
@@ -48,6 +50,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// logout a user
 router.get('/logout', (req, res) => {
     req.session.destroy();
     res.render('index')

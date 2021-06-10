@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Comment, BlogPost, User } = require('../../models');
 
+// find all users
 router.get('/', async (req, res) => {
     console.log('route reached!')
     try {
@@ -12,6 +13,7 @@ router.get('/', async (req, res) => {
     }
 })
 
+// find one user
 router.get('/:id', async(req, res) => {
     console.log('route reached!')
     try {
@@ -29,4 +31,4 @@ router.get('/:id', async(req, res) => {
     }
 });
 
-module.express = router;
+module.exports = router;

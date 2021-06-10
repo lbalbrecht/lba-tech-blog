@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { json } = require('sequelize/types');
 const apiAuth = require("../middleware/apiAuth")
 const { User, BlogPost, Comment } = require('../models/');
 
@@ -65,4 +64,6 @@ router.get('post/:id', apiAuth, async (req, res) => {
     } catch (err) {
         res.json(err)
     }
-})
+});
+
+module.exports = router;
