@@ -11,6 +11,24 @@ const seedDatabase = async () => {
     const users = await User.bulkCreate(userSeedData);
     const posts = await BlogPost.bulkCreate(blogPostSeedData);
     const comments = await Comment.bulkCreate(commentSeedData);
+
+    await users[0].addBlogPost(1)
+    await users[1].addBlogPost(2)
+    await users[2].addBlogPost(3)
+
+    await users[0].addComment(3)
+    await users[0].addComment(5)
+    await users[1].addComment(1)
+    await users[1].addComment(6)
+    await users[2].addComment(2)
+    await users[2].addComment(4)
+
+    await posts[0].addComment(1)
+    await posts[0].addComment(1)
+    await posts[1].addComment(2)
+    await posts[1].addComment(2)
+    await posts[2].addComment(3)
+    await posts[2].addComment(3)
 };
 
 seedDatabase();

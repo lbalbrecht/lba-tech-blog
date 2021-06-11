@@ -1,0 +1,20 @@
+[
+    {
+        "title": "New build troubleshooting",
+        "post_body": "Hey, guys, I'm having some trouble with my rig. I've set up and installed the OS but it's not running for some reason. I keep getting the error message 'ERR_USER_INSTALL_INVALID' has anybody else gotten this before?",
+        "post_date": "2021-04-05",
+        "user_id": 1
+    },
+    {
+        "title": "Javascript is the best programming language",
+        "post_body": "It's honestly amazing how versatile Javascript is. I honestly believe that it's the quintessential programming language that everyone should be learning. Not only is the vanilla script intuitive and easy for even beginners to learn, but there's a wealth of pre-built libraries that allow for a variety of possibilities for app creation.",
+        "post_date": "2021-02-14",
+        "user_id": 2
+    },
+    {
+        "title": "Graphics card prices",
+        "post_body": "Has anybody found a retailer that's selling graphics cards at market price. It seems like every store has hiked their prices up because of the current crypto boom. It's really frustrating. I've been hoping to upgrade my old GTX 1020 for a while now but it just doesn't seem feasible.",
+        "post_date": "2021-01-15",
+        "user_id": 3
+    }
+]

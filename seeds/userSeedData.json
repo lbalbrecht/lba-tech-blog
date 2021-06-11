@@ -1,0 +1,17 @@
+[
+    {
+        "username": "Techboi5",
+        "email": "boi@tech.com",
+        "password": "password"
+    },
+    {
+        "username": "JavaScriptLuvr",
+        "email": "arcticmonkey@computers.com",
+        "password": "password"
+    },
+    {
+        "username": "MissProgrammer",
+        "email": "sarah@coding.com",
+        "password": "password"
+    }
+]

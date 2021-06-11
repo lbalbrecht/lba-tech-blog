@@ -11,10 +11,10 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        user: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+        // user: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        // },
         comment_body: {
             type: DataTypes.STRING,
             allowNull: false,

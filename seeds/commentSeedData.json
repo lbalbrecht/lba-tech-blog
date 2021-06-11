@@ -1,0 +1,38 @@
+[
+    {
+        "comment_body": "It sounds like an issue with your product key. Have you used it before?",
+        "comment_date": "2021-04-05",
+        "user_id": 2,
+        "blogpost_id": 1
+    },
+    {
+        "comment_body": "I've had the same problem. Double-check that you input your product key correctly.",
+        "comment_date": "2021-04-06",
+        "user_id": 3,
+        "blogpost_id": 1
+    },
+    {
+        "comment_body": "I don't know if I agree. I will say that JS has a wide variety of uses; however, it's limited in what it can do in terms of more complicated software development. I think that C++, while not quite as accessible to beginners, is a much more useful language overall.",
+        "comment_date": "2021-03-01",
+        "user_id": 1,
+        "blogpost_id": 2
+    },
+    {
+        "comment_body": "You make a great point about the libraries! I agree that Javascript is a great language and I think it's fundamental for any programmer :)",
+        "comment_date": "2021-02-15",
+        "user_id": 3,
+        "blogpost_id": 2
+    },
+    {
+        "comment_body": "I've been struggling to find one, too. I've heard that manufacturers have been having trouble keeping up with the demand so even major suppliers like Amazon have limited stock",
+        "comment_date": "2021-01-15",
+        "user_id": 1,
+        "blogpost_id": 3
+    },
+    {
+        "comment_body": "It's the worst. I really don't trust any sellers other than Newegg, but even their prices are gouged...",
+        "comment_date": "2021-01-15",
+        "user_id": 2,
+        "blogpost_id": 3
+    }
+]
