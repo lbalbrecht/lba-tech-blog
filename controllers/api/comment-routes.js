@@ -36,7 +36,7 @@ router.post('/', apiAuth, async (req, res) => {
     console.log('route reached!')
     try {
         const newComment = await Comment.create({
-            user: req.session.user.username,
+            comment_author: req.session.user.username,
             comment_body: req.body.comment_body,
             comment_date: req.body.comment_date,
             user_id: req.session.user.id,
