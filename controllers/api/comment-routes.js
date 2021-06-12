@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     console.log('route reached!')
     try {
         const allComments = await Comment.findAll();
-        res.status(200).json(allPosts);
+        res.status(200).json(allComments);
     } catch (err) {
         res.status(500).json(err);
     }

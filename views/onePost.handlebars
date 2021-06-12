@@ -3,7 +3,7 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 
-<div id="newPost">
+<div id="mainPage">
     <div class="flex-column justify-space-around">
         <header class="display-flex" style="background-color: maroon">
             <div id="title" style="color: lightgray">
@@ -33,26 +33,28 @@
                 </div>
             </nav>
         </header>
-        <main class="container" id="newPostPage">
-            <br>
-            <br>
-            <form>
-                <div class="form-group">
-                    <label for="formGroupExampleInput">
-                        <h2>Post title</h2>
-                    </label>
-                    <input type="text" class="form-control" id="newPostTitle">
+        <main class="container container-fluid mt-5 main" id="mainTrips">
+            <div class="one-post">
+                <div class="card" id="one-post" style="border:1px">
+                    <section class="card-body" id="one-post">
+                        <div class="cardHeader display-flex">
+                            <h3 class="card-title">{{title}}</h3>
+                        </div>
+                        <p><strong>By {{post_author}} on {{post_date}}</strong></p>
+                        <p class="postBody">{{post_body}}</p>
+                    </section>
+                    <br>
+                    <div class="comments-section-header" style="padding-left:40px">
+                        <h3>Comments</h3>
+                    </div>
+                    {{#each comments}}
+                    <section class="card-body" id="one-post">
+                        <p><strong>By {{comment_author}} on {{comment_date}}</strong></p>
+                        <p>{{comment_body}}</p>
+                    </section>
+                    {{/each}}
                 </div>
-                <br>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">
-                        <h2>Write your post here</h2>
-                    </label>
-                    <textarea class="form-control" id="newPostBody" rows="8"></textarea>
-                </div>
-            </form>
-            <br>
-            <button type="submit" class="btn btn-primary">Publish</button>
+            </div>
         </main>
     </div>
 </div>

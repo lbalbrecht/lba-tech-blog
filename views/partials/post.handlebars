@@ -1,13 +1,13 @@
-<a href="/api/posts/{{id}}" class="post-link">
-    <div class="my-posts">
-        <section class="userPosts" id="my-post">
-            <div class="postHeader display-flex">
-                <h3 class="postTitle">{{title}}</h3>
-                <h3>{{post_date}}</h3>
-            </div>
-            <br>
-            <p><strong>{{post_author}}</strong></p>
-            <p class="postBody">{{post_body}}</p>
-        </section>
-    </div>
+<a href="/api/posts/{{id}}" style="color: black; text-decoration: none;">
+<div class="card" id="all-posts">
+    <section class="card-body" id="one-post">
+        <div class="cardHeader display-flex">
+            <h3 class="card-title">{{title}}</h3>
+        </div>
+        <br>
+        <p><strong>By {{post_author}} on {{post_date}}</strong></p>
+        <p class="postBody">{{post_body}}</p>
+    </section>
+</div>
 </a>
+<br>

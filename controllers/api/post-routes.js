@@ -7,26 +7,35 @@ const apiAuth = require("../../middleware/apiAuth")
 router.get('/', async (req, res) => {
     console.log('route reached!')
     try {
-        const allPosts = await Post.findAll();
+        const allPosts = await BlogPost.findAll();
         res.status(200).json(allPosts);
+        console.log(allPosts)
     } catch (err) {
         res.status(500).json(err);
     }
 })
 
-// get one blog post
+// get one blog post with comments
 router.get('/:id', async(req, res) => {
     console.log('route reached!')
     try {
-        const postData = await Post.findByPk(req.params.id, {
+        const postData = await BlogPost.findByPk(req.params.id, {
             include: [{ model: User }, { model: Comment }],
         });
 
         if (!postData) {
             res.status(404).json({ message: 'No post found with that id!' })
         }
-
-        res.status(200).json(postData);
+        const onePost = postData.get({ plain: true })
+        const commentData = postData.Comments.map((comment) => comment.get({ plain: true }))
+        res.render("onePost", { 
+            title: onePost.title,
+            post_author: onePost.post_author,
+            post_date: onePost.post_date,
+            post_body: onePost.post_body,
+            comments: commentData
+         })
+        // console.log(onePost)
     } catch (err) {
         res.status(500).json(err);
     }
@@ -87,7 +96,7 @@ router.put('/:id', async (req, res) => {
     console.log(commentId)
 
     try {
-        const postToUpdate = await Post.findByPk(postId)
+        const postToUpdate = await BlogPost.findByPk(postId)
         postToUpdate.addComment(req.params.id)
         postToUpdate.save();
         res.status(200).json({ message: 'Success!' })

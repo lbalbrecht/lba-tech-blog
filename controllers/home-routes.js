@@ -4,7 +4,11 @@ const { User, BlogPost, Comment } = require('../models/');
 
 // loads the home page
 router.get('/', async (req, res) => {
-    res.render('index')
+    const allPostsData = await BlogPost.findAll();
+    const allPosts = allPostsData.map(post => post.get({plain: true}))
+    res.render('index',{
+        posts: allPosts
+    })
 })
 
 // loads the login page
@@ -17,25 +21,25 @@ router.get('/dashboard', async (req, res) => {
 })
 
 // if user is logged in, displays user dashboard; otherwise, sends user to login page
-// router.get('/dashboard', apiAuth, async (req, res) => {
-//     try {
-//         const userPostData = await BlogPost.findAll({
-//             where: {
-//                 user_id: req.session.user.id
-//             }
-//         })
-//         if (!req.session.user) {
-//             res.render('login')
-//             return;
-//         }
-//         const userPosts = userPostData.map((posts) => posts.get({ plain: true }))
-//         console.log(userPosts.general_name);
+router.get('/dashboard', apiAuth, async (req, res) => {
+    try {
+        const userPostData = await BlogPost.findAll({
+            where: {
+                user_id: req.session.user.id
+            }
+        })
+        if (!req.session.user) {
+            res.render('login')
+            return;
+        }
+        const userPosts = userPostData.map((posts) => posts.get({ plain: true }))
+        console.log(userPosts.general_name);
 
-//         res.render("dashboard", { userPosts })
-//     } catch (err) {
-//         res.json(err);
-//     }
-// });
+        res.render("dashboard", { userPost: userPosts })
+    } catch (err) {
+        res.json(err);
+    }
+});
 
 // open the new post page from the user's dashboard
 router.get('/newpost', async(req, res) => {

@@ -13,7 +13,8 @@ router.get('/sessiondata', (req, res) => {
         req.session.user = {
             id: newUser.id,
             email: newUser.email,
-            username: newUser.username
+            username: newUser.username,
+            password: newUser.password
         };
         res.json(newUser)
     }).catch(err => {
@@ -42,6 +43,7 @@ router.post('/login', async (req, res) => {
                 username: foundUser.username
             };
             console.log(req.session)
+            res.render('dashboard')
             return res.json(req.session)
         }
     } catch (err) {
