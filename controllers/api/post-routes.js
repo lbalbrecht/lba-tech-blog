@@ -59,23 +59,22 @@ router.post('/new', apiAuth, async (req, res) => {
 });
 
 // delete a blog post
-router.delete('./:id', apiAuth, async (req, res) => {
+router.delete('/:id', apiAuth, async (req, res) => {
     console.log('route reached!')
     try {
         const removePost = await BlogPost.destroy({
             where: {
-                id: req.params.id
+                id: req.params.id,
+                user_id: req.session.user.id
             }
         });
-        if(!req.session.user) {
-            res.render('login')
-            return
-        }
         res.status(200).json(removePost)
 
         if (!removePost) {
             res.status(404).json({message: 'post not found'})
+            return;
         }
+        res.render('dashboard')
     } catch (err) {
         res.status(500).json(err);
     }
@@ -86,7 +85,6 @@ router.put('/:id', async (req, res) => {
     console.log('route reached!')
     let commentId = req.body.id
     console.log(commentId)
-
     try {
         const postToUpdate = await BlogPost.findByPk(postId)
         postToUpdate.addComment(req.params.id)

@@ -38,14 +38,11 @@ router.post('/', apiAuth, async (req, res) => {
         const newComment = await Comment.create({
             comment_author: req.session.user.username,
             comment_body: req.body.comment_body,
-            comment_date: req.body.comment_date,
+            // comment_date: req.body.comment_date,
             user_id: req.session.user.id,
-            blogpost_id:req.body.blogpost.id
+            blogpost_id: req.body.blogpost_id
         });
-        if(!req.session.user) {
-            res.render('login')
-            return
-        }
+        console.log(newComment)
         res.status(200).json(newComment)
     } catch (err) {
         res.status(500).json(err);

@@ -21,3 +21,27 @@ document.querySelector("#new-post-form").addEventListener("submit", event => {
         }
     })
 })
+
+document.querySelector("#new-comment-form").addEventListener("submit", event => {
+    event.preventDefault();
+    const fetchObj = {
+        comment_body: document.querySelector("#newCommentBody").value,
+        blogpost_id: req.params.id
+    }
+    console.log(fetchObj)
+    fetch('/api/comments', {
+        method: "POST",
+        body: JSON.stringify(fetchObj),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(res => {
+        console.log(res);
+        if(res.ok) {
+            location.reload();
+        } else {
+            alert("Post failed!")
+            return
+        }
+    })
+})

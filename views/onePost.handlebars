@@ -4,6 +4,7 @@
 </head>
 
 <div id="mainPage">
+    <br>
     <div class="flex-column justify-space-around">
         <div class="one-post">
             <div class="card" id="one-post" style="padding: 10px">
@@ -28,8 +29,23 @@
             </div>
         </div>
         <br>
-        <div id="add-comment-button">
-            <button type="submit" class="btn btn-primary">Add a comment</button>
+        <div id="newComment">
+            <div class="flex-column justify-space-around">
+                <br>
+                <br>
+                <form id="new-comment-form">
+                    <div class="form-group">
+                        <label for="newCommentBody">
+                            <h2>Add a comment</h2>
+                        </label>
+                        <textarea class="form-control" id="newCommentBody" rows="3"></textarea>
+                    </div>
+                </form>
+                <br>
+                <div id="add-comment-button">
+                    <button type="submit" class="btn btn-primary" form="new-comment-form" id="add-comment-btn">Add comment</button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/login.js"></script>
