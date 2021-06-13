@@ -24,11 +24,11 @@ const seedDatabase = async () => {
     await users[2].addComment(4)
 
     await posts[0].addComment(1)
-    await posts[0].addComment(1)
-    await posts[1].addComment(2)
-    await posts[1].addComment(2)
-    await posts[2].addComment(3)
-    await posts[2].addComment(3)
+    await posts[0].addComment(2)
+    await posts[1].addComment(3)
+    await posts[1].addComment(4)
+    await posts[2].addComment(5)
+    await posts[2].addComment(6)
 };
 
 seedDatabase();

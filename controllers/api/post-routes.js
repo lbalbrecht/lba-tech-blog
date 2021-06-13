@@ -42,27 +42,19 @@ router.get('/:id', async(req, res) => {
 });
 
 // create a new blog post
-router.post('/', apiAuth, async (req, res) => {
-    console.log('route reached!')
+router.post('/new', apiAuth, async (req, res) => {
     try {
         const newPost = await BlogPost.create({
             title: req.body.title,
             post_author: req.session.user.username,
             post_body: req.body.post_body,
-            post_date: req.body.post_date,
+            // post_date: req.body.post_date,
             user_id: req.session.user.id
         });
-        if(!req.session.user) {
-            res.render('login');
-            return
-        }
-        if (req.body.post_body.length > 255) {
-            alert("Post must be shorter than 255 characters");
-            return
-        }
         res.status(200).json(newPost)
     } catch (err) {
         res.status(500).json(err);
+        console.log(err)
     }
 });
 

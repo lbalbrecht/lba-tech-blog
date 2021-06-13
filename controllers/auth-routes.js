@@ -2,8 +2,12 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
-// create a new user
 router.get('/sessiondata', (req, res) => {
+    res.json(req.session)
+})
+
+// create a new user
+router.post('/new', (req, res) => {
     console.log('route reached');
     User.create({
         username: req.body.username,
@@ -37,25 +41,36 @@ router.post('/login', async (req, res) => {
             return res.status(401).send('Username not found')
         }
         if (bcrypt.compareSync(req.body.password, foundUser.password)) {
+            // if (req.body.password === foundUser.password) {
+            console.log('success')
             req.session.user = {
                 id: foundUser.id,
+                username: foundUser.username,
                 email: foundUser.email,
                 username: foundUser.username
             };
-            console.log(req.session)
-            res.render('dashboard')
+            console.log(req.session.user)
             return res.json(req.session)
+        }
+        else {
+            console.log("incorrect password")
         }
     } catch (err) {
         req.session.destroy();
-        return res.status(401).sendStatus("Username or password is incorrect")
+        return res.status(401).send("Username or password is incorrect")
     }
 });
 
 // logout a user
-router.get('/logout', (req, res) => {
-    req.session.destroy();
-    res.render('index')
+router.get('/logout', async (req, res) => {
+    if (!req.session.user) {
+        console.log("No user logged in!");
+        return
+    } else {
+        req.session.destroy();
+        console.log("successfully logged out!")
+        res.render('index')
+    }
 })
 
 module.exports = router;

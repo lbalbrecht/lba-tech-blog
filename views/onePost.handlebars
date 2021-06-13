@@ -5,56 +5,33 @@
 
 <div id="mainPage">
     <div class="flex-column justify-space-around">
-        <header class="display-flex" style="background-color: maroon">
-            <div id="title" style="color: lightgray">
-                <h1 style="text-align: center">Welcome to the Tech Blog</h1>
-            </div>
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse">
-                        <ul class="navbar-nav me-auto mb-2 mg-lg-0">
-                            <li class="nav-item">
-                                <a href="/" class="nav-link" id="home-link" style="color: white">
-                                    <h3>Home</h3>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/dashboard" class="nav-link" id="dash-link" style="color: white">
-                                    <h3>Dashboard</h3>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/login" class="nav-link" id="login-link" style="color: white">
-                                    <h3>Login</h3>
-                                </a>
-                            </li>
-                        </ul>
+        <div class="one-post">
+            <div class="card" id="one-post" style="padding: 10px">
+                <section class="card-body" id="one-post" style="border:1px; border-style: solid">
+                    <div class="cardHeader display-flex">
+                        <h3 class="card-title">{{title}}</h3>
                     </div>
+                    <p style="margin-left:40px"><strong>By {{post_author}} on {{post_date}}</strong></p>
+                    <p class="postBody">{{post_body}}</p>
+                </section>
+                <br>
+                <div class="comments-section-header" style="padding-left:40px">
+                    <h3>Comments</h3>
                 </div>
-            </nav>
-        </header>
-        <main class="container container-fluid mt-5 main" id="mainTrips">
-            <div class="one-post">
-                <div class="card" id="one-post" style="border:1px">
-                    <section class="card-body" id="one-post">
-                        <div class="cardHeader display-flex">
-                            <h3 class="card-title">{{title}}</h3>
-                        </div>
-                        <p><strong>By {{post_author}} on {{post_date}}</strong></p>
-                        <p class="postBody">{{post_body}}</p>
-                    </section>
-                    <br>
-                    <div class="comments-section-header" style="padding-left:40px">
-                        <h3>Comments</h3>
-                    </div>
-                    {{#each comments}}
-                    <section class="card-body" id="one-post">
-                        <p><strong>By {{comment_author}} on {{comment_date}}</strong></p>
-                        <p>{{comment_body}}</p>
-                    </section>
-                    {{/each}}
-                </div>
+                {{#each comments}}
+                <section class="card-body" id="one-post" style="border:1px; border-style: solid">
+                    <p><strong>By {{comment_author}} on {{comment_date}}</strong></p>
+                    <p>{{comment_body}}</p>
+                </section>
+                <br>
+                {{/each}}
             </div>
-        </main>
+        </div>
+        <br>
+        <div id="add-comment-button">
+            <button type="submit" class="btn btn-primary">Add a comment</button>
+        </div>
     </div>
+    <script src="js/login.js"></script>
+    <script src="js/logout.js"></script>
 </div>

@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+// const DATE_SHORT = require('luxon')
 
 class BlogPost extends Model { };
 
@@ -25,7 +26,8 @@ BlogPost.init(
         },
         post_date: {
             type: DataTypes.DATEONLY,
-            allowNull: false,
+            allowNull: true,
+            defaultValue: 0,
         },
         user_id: {
             type: DataTypes.INTEGER,

@@ -1,46 +1,21 @@
 <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 
 <div id="dashboardPage">
     <div class="flex-column justify-space-around">
-        <header class="display-flex" style="background-color: maroon">
-            <div id="title"  style="color: lightgray">
-                <h1 style="text-align: center">Welcome to the Tech Blog</h1>
-            </div>
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse">
-                        <ul class="navbar-nav me-auto mb-2 mg-lg-0">
-                            <li class="nav-item">
-                                <a href="/" class="nav-link" id="home-link" style="color: white">
-                                    <h3>Home</h3>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/dashboard" class="nav-link" id="dash-link" style="color: white">
-                                    <h3>Dashboard</h3>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/login" class="nav-link" id="login-link" style="color: white">
-                                    <h3>Login</h3>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <main class="container container-fluid mt-5 main" id="dashboardTrips">
-            <div class="myPosts">
-                <h1>Your Posts</h1>
-                <button type="submit" class="btn btn-primary">New post</button>
-                {{#each userPost}}
-                {{> post}}
-                {{/each}}
-            </div>
-        </main>
+        <h1>Your Posts</h1>
+        <div class="btn-div">
+            <a href="/newpost">
+                <button type="submit" class="btn btn-primary" id="new-post-btn">New post</button>
+            </a>
+        </div>
+        <br>
+        {{#each userPost}}
+        {{> post}}
+        {{/each}}
     </div>
+    <script src="js/login.js"></script>
+    <script src="js/logout.js"></script>
 </div>
