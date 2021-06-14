@@ -3,7 +3,7 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 
-<div id="mainPage">
+<div id="onePostPage">
     <br>
     <div class="flex-column justify-space-around">
         <div class="one-post">
@@ -26,6 +26,14 @@
                 </section>
                 <br>
                 {{/each}}
+                <div class="cardFooter display-flex" style="text-align: right">
+                    <button type="submit" class="btn" id="delete-post-btn"
+                        style="background-color: transparent; border: none;"><i class="fa fa-trash"
+                            aria-hidden="true"></i></button>
+                    <button type="submit" class="btn" id="edit-post-btn"
+                        style="background-color: transparent; border: none;"><i class="fa fa-pencil-square-o"
+                            aria-hidden="true"></i></button>
+                </div>
             </div>
         </div>
         <br>
@@ -43,11 +51,10 @@
                 </form>
                 <br>
                 <div id="add-comment-button">
-                    <button type="submit" class="btn btn-primary" form="new-comment-form" id="add-comment-btn">Add comment</button>
+                    <button type="submit" class="btn btn-primary" form="new-comment-form" id="add-comment-btn">Add
+                        comment</button>
                 </div>
             </div>
         </div>
     </div>
-    <script src="js/login.js"></script>
-    <script src="js/logout.js"></script>
 </div>

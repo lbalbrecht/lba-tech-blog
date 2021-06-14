@@ -26,16 +26,8 @@ router.get('/:id', async(req, res) => {
         if (!postData) {
             res.status(404).json({ message: 'No post found with that id!' })
         }
-        const onePost = postData.get({ plain: true })
-        const commentData = postData.Comments.map((comment) => comment.get({ plain: true }))
-        res.render("onePost", { 
-            title: onePost.title,
-            post_author: onePost.post_author,
-            post_date: onePost.post_date,
-            post_body: onePost.post_body,
-            comments: commentData
-         })
-        // console.log(onePost)
+        
+        res.status(200).json(postData)
     } catch (err) {
         res.status(500).json(err);
     }
@@ -69,7 +61,10 @@ router.delete('/:id', apiAuth, async (req, res) => {
             }
         });
         res.status(200).json(removePost)
-
+        
+        if(req.session.user.id !== removePost.user_id) {
+            res.status(403).json("You may not delete another person's post!")
+        }
         if (!removePost) {
             res.status(404).json({message: 'post not found'})
             return;
