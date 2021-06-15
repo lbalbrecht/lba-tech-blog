@@ -69,7 +69,7 @@ router.get('/logout', async (req, res) => {
     } else {
         req.session.destroy();
         console.log("successfully logged out!")
-        res.render('index')
+        res.redirect('/')
     }
 })
 

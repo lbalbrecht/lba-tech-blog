@@ -52,7 +52,7 @@ router.get('/onepost', async (req,res) => {
 })
 
 // get one post with comments
-router.get('/onepost/:id', async (req, res) => {
+router.get('/onepost/:id', apiAuth, async (req, res) => {
     try {
         const postData = await BlogPost.findByPk(req.params.id, {
             include: [{ model: User }, { model: Comment }],
