@@ -72,10 +72,10 @@
             }).then(res => {
                 console.log(res);
                 if (res.ok) {
-                    location.replace('/')
+                    location.replace('/dashboard')
                 } else {
                     alert("Could not delete post!")
-                    // location.reload();
+                    location.replace('/');
                 }
             })
         })

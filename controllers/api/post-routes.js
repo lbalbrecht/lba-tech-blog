@@ -63,6 +63,7 @@ router.delete('/', apiAuth, async (req, res) => {
         res.status(200).json(removePost)
 
         if (req.session.user.id !== removePost.user_id) {
+            res.end()
             return
         }
         if (!removePost) {
