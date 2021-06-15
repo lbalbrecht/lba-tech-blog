@@ -21,7 +21,8 @@ Comment.init(
         },
         comment_date: {
             type: DataTypes.DATEONLY,
-            allowNull: false,
+            allowNull: true,
+            defaultValue: 0,
         },
         user_id: {
             type: DataTypes.INTEGER,

@@ -5,9 +5,9 @@
 
 <div id="onePostPage">
     <br>
-    <div class="flex-column justify-space-around">
-        <div class="one-post">
-            <div class="card" id="one-post" style="padding: 10px">
+    <div class="flex-column justify-space-around" id="blogpost">
+        <div class="post" id="{{id}}">
+            <div class="card" style="padding: 10px">
                 <section class="card-body" id="one-post" style="border:1px; border-style: solid">
                     <div class="cardHeader display-flex">
                         <h3 class="card-title">{{title}}</h3>
@@ -27,7 +27,7 @@
                 <br>
                 {{/each}}
                 <div class="cardFooter display-flex" style="text-align: right">
-                    <button type="submit" class="btn" id="delete-post-btn"
+                    <button type="click" class="btn" id="delete-post-btn"
                         style="background-color: transparent; border: none;"><i class="fa fa-trash"
                             aria-hidden="true"></i></button>
                     <button type="submit" class="btn" id="edit-post-btn"
@@ -57,4 +57,51 @@
             </div>
         </div>
     </div>
+    <script>
+        document.querySelector("#delete-post-btn").addEventListener('click', event => {
+            event.preventDefault();
+            const fetchObj = {
+                id: document.querySelector(".post").id
+            }
+            fetch('/api/posts', {
+                method: "DELETE",
+                body: JSON.stringify(fetchObj),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(res => {
+                console.log(res);
+                if (res.ok) {
+                    location.replace('/')
+                } else {
+                    alert("Could not delete post!")
+                    // location.reload();
+                }
+            })
+        })
+
+
+        document.querySelector("#new-comment-form").addEventListener("submit", event => {
+            event.preventDefault();
+            const fetchObj = {
+                comment_body: document.querySelector("#newCommentBody").value,
+                blogpost_id: document.querySelector(".post").id
+            }
+            fetch('/api/comments', {
+                method: "POST",
+                body: JSON.stringify(fetchObj),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(res => {
+                console.log(res);
+                if (res.ok) {
+                    location.reload();
+                } else {
+                    alert("Post failed!")
+                    return
+                }
+            })
+        })
+    </script>
 </div>

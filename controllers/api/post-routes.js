@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 })
 
 // get one blog post with comments
-router.get('/:id', async(req, res) => {
+router.get('/:id', async (req, res) => {
     console.log('route reached!')
     try {
         const postData = await BlogPost.findByPk(req.params.id, {
@@ -26,7 +26,7 @@ router.get('/:id', async(req, res) => {
         if (!postData) {
             res.status(404).json({ message: 'No post found with that id!' })
         }
-        
+
         res.status(200).json(postData)
     } catch (err) {
         res.status(500).json(err);
@@ -51,25 +51,27 @@ router.post('/new', apiAuth, async (req, res) => {
 });
 
 // delete a blog post
-router.delete('/:id', apiAuth, async (req, res) => {
+router.delete('/', apiAuth, async (req, res) => {
     console.log('route reached!')
     try {
         const removePost = await BlogPost.destroy({
             where: {
-                id: req.params.id,
+                id: req.body.id,
                 user_id: req.session.user.id
             }
         });
         res.status(200).json(removePost)
-        
-        if(req.session.user.id !== removePost.user_id) {
-            res.status(403).json("You may not delete another person's post!")
+
+        if (req.session.user.id !== removePost.user_id) {
+            return
         }
         if (!removePost) {
-            res.status(404).json({message: 'post not found'})
+            res.status(404).json({ message: 'post not found' })
             return;
-        }
-        res.render('dashboard')
+        } 
+        // else {
+        //     res.render('dashboard')
+        // }
     } catch (err) {
         res.status(500).json(err);
     }

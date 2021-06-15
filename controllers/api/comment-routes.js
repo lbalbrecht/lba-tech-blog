@@ -42,7 +42,10 @@ router.post('/', apiAuth, async (req, res) => {
             user_id: req.session.user.id,
             blogpost_id: req.body.blogpost_id
         });
-        console.log(newComment)
+        if (!req.session.user) {
+            res.render('login')
+            return
+        }
         res.status(200).json(newComment)
     } catch (err) {
         res.status(500).json(err);
@@ -50,7 +53,7 @@ router.post('/', apiAuth, async (req, res) => {
 });
 
 // delete a comment
-router.delete('./:id', async (req, res) => {
+router.delete('./:id', apiAuth, async (req, res) => {
     console.log('route reached!')
     try {
         const removeComment = await Comment.destroy({

@@ -12,18 +12,13 @@ router.get('/', async (req, res) => {
 })
 
 // loads the login page
-router.get('/login', async (req, res) => {
+router.get('/login', (req, res) => {
     if (!req.session.user) {
         res.render('login')
     } else {
         return
     }
 })
-
-router.get('/onepost', async (req,res) => {
-    res.render('onePost')
-})
-
 
 // if user is logged in, displays user dashboard; otherwise, sends user to login page
 router.get('/dashboard', apiAuth, async (req, res) => {
@@ -41,18 +36,33 @@ router.get('/newpost', apiAuth, (req, res) => {
     res.render('newPost')
 })
 
+router.get('/onepost', async (req,res) => {
+    try{
+        const postData = await BlogPost.findOne({
+            where: {
+                id: req.body.id,
+            }
+        })
+        res.status(200).json(postData)
+    } catch (err) {
+        res.status(500).json(err);
+        console.log(err)
+    }
+    res.render('onePost')
+})
+
 // get one post with comments
 router.get('/onepost/:id', async (req, res) => {
     try {
         const postData = await BlogPost.findByPk(req.params.id, {
             include: [{ model: User }, { model: Comment }],
         });
-        console.log(postData)
         if (!postData) {
             res.status(404).json({ message: 'No post found with that id!' })
         }
         const onePost = postData.get({ plain: true })
         res.render("onePost", {
+            id: onePost.id,
             title: onePost.title,
             post_author: onePost.post_author,
             post_date: onePost.post_date,
