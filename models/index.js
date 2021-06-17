@@ -26,7 +26,7 @@ User.hasMany(Comment, {
 })
 
 Comment.belongsTo(User, {
-    through: 'BlogPost'
+    through: 'blogpost'
 })
 
 module.exports = { User, BlogPost, Comment }
